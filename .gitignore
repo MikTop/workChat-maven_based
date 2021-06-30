@@ -1,0 +1,6 @@
+# Project exclude paths
+/database/target/
+/out/
+/service/target/
+/target/
+/web/target/
