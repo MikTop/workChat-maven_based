@@ -4,4 +4,4 @@
 /service/target/
 /target/
 /web/target/
-*.jpg
+/*.jpg
