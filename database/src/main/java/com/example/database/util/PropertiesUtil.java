@@ -29,6 +29,16 @@ public final class PropertiesUtil {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public static void loadProperties(String resourceFileName) {
+		try (InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(resourceFileName)){
+
+			INSTANCE.load(inputStream);
+			System.out.println();
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 	
 	
 	

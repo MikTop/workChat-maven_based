@@ -26,7 +26,7 @@ public final class ConnectionManager {
 	
 	
 	static {
-		loaddriver();
+		loadDriver();
 		initPoolConnection();
 	}
 
@@ -74,7 +74,7 @@ public final class ConnectionManager {
 	}
 
 	@SneakyThrows
-	private static void loaddriver() {
+	private static void loadDriver() {
 		
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		
