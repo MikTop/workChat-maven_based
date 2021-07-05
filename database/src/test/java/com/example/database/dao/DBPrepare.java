@@ -21,7 +21,7 @@ public class DBPrepare {
             (
                 id int auto_increment
                     primary key
-            );
+            )
             """;
     private static final String createChatSQL = """
             create table chat
@@ -32,7 +32,7 @@ public class DBPrepare {
                 primary key (member_id, chat_id),
                 constraint member_id_user_id
                     foreign key (member_id) references user (id)
-            );
+            )
             """;
     private static final String createMessageSQL = """
             create table message
@@ -45,7 +45,7 @@ public class DBPrepare {
                 send_date_time datetime     not null,
                 constraint sender_id_user_id
                     foreign key (sender_id) references user (id)
-            );
+            )
             """;
     private static final String createUserSQL = """
             create table user
@@ -63,8 +63,7 @@ public class DBPrepare {
                     unique (email)
             );
                         
-            create index email_2
-                on user (email);
+            
             """;
     private static final String dropAllChat = """
             DROP TABLE all_chat
@@ -82,7 +81,7 @@ public class DBPrepare {
             DROP TABLE user
             """;
 
-    private static final List<String> createTableSqlList = Arrays.asList(createAllChatSQL,createChatSQL,createMessageSQL,createUserSQL);
+    private static final List<String> createTableSqlList = Arrays.asList(createUserSQL ,createAllChatSQL,createChatSQL,createMessageSQL);
 
     private static final List<String> dropTablesSQLList = Arrays.asList(dropAllChat, dropChat, dropMessage, dropUser);
 
@@ -92,7 +91,7 @@ public class DBPrepare {
     }
 
     public static void initDB(){
-            createTableSqlList.stream()
+            createTableSqlList
                     .forEach(DBPrepare::executeSql);
 
     }
@@ -113,14 +112,14 @@ public class DBPrepare {
 
 
     @SneakyThrows
-    private static Connection openConnection(){
+    public static Connection openConnection(){
         return DriverManager.getConnection(PropertiesUtil.getProperty("db.url"),
                 PropertiesUtil.getProperty("db.username"),
                 PropertiesUtil.getProperty("db.password"));
     }
 
     private static void loadProperties() {
-        try (InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream("dbTestProperties.properties")){
+        try (InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream("dbProperties.properties")){
 
             INSTANCE.load(inputStream);
             System.out.println();
