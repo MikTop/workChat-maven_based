@@ -26,7 +26,7 @@ public class ChatDaoTest {
     private static final Random random = new Random(15);
 
 
-    @SneakyThrows
+
     @BeforeAll
     static void init() {
 
